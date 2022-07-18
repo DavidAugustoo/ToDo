@@ -1,19 +1,52 @@
 import { Header } from './components/Header/Header';
 import { PlusCircle } from 'phosphor-react';
+import {v4 as uuid} from 'uuid';
 
 import style from './App.module.css';
 
 import './global.css';
 import { Task } from './components/Task/Task';
+import { ChangeEvent, FormEvent, useState } from 'react';
+
+interface Task {
+  id: string
+  content: string,
+  isChecked: boolean
+}
 
 function App() {
+
+  const [newTaskText, setNewTaskText] = useState('');
+
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
+    setNewTaskText(event.target.value);
+  }
+
+  function handleCreateNewTask(event: FormEvent) {
+    event.preventDefault();
+
+    setTasks([...tasks, {
+      id: uuid(),
+      content: newTaskText,
+      isChecked: false
+    }]);
+
+    setNewTaskText('');
+  }
+
   return (
     <>
       <Header />
 
       <main>
-        <form className={style.taskForm} action="">
-          <input placeholder="Adicione uma nova tarefa" />
+        <form onSubmit={handleCreateNewTask} className={style.taskForm}>
+          <input 
+            value={newTaskText}
+            onChange={handleNewTaskChange}
+            placeholder="Adicione uma nova tarefa" 
+          />
 
           <button type="submit">
             Criar
@@ -27,9 +60,9 @@ function App() {
         </div>
 
         <li className={style.taskList}>
-          <Task />
-          <Task />
-          <Task />
+          {tasks.map(task => {
+            return <Task key={task.id} content={task.content} isChecked={task.isChecked}/>
+          })}
         </li>
       </main>
 

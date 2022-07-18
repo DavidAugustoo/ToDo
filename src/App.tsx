@@ -58,9 +58,11 @@ function App() {
     setTasks(newListTaskWithOutOne);
   }
 
-  const tasksCreated = tasks.length
+  const tasksCreated = tasks.length;
 
-  const tasksCompleted = tasks.filter(task => task.isChecked).length
+  const tasksCompleted = tasks.filter(task => task.isChecked).length;
+
+  const isNewTaskEmpty = newTaskText.length == 0;
 
   return (
     <>
@@ -74,7 +76,7 @@ function App() {
             placeholder="Adicione uma nova tarefa"
           />
 
-          <button type="submit">
+          <button type="submit" disabled={isNewTaskEmpty}>
             Criar
             <PlusCircle size={20} weight="bold" />
           </button>

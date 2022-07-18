@@ -1,6 +1,6 @@
 import { Header } from './components/Header/Header';
 import { PlusCircle } from 'phosphor-react';
-import {v4 as uuid} from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 import style from './App.module.css';
 
@@ -36,16 +36,24 @@ function App() {
     setNewTaskText('');
   }
 
+  function onDeleteTask(id: string) {
+    const newListTaskWithOutOne = tasks.filter(task => {
+      return task.id != id
+    })
+
+    setTasks(newListTaskWithOutOne)
+  }
+
   return (
     <>
       <Header />
 
       <main>
         <form onSubmit={handleCreateNewTask} className={style.taskForm}>
-          <input 
+          <input
             value={newTaskText}
             onChange={handleNewTaskChange}
-            placeholder="Adicione uma nova tarefa" 
+            placeholder="Adicione uma nova tarefa"
           />
 
           <button type="submit">
@@ -61,7 +69,15 @@ function App() {
 
         <li className={style.taskList}>
           {tasks.map(task => {
-            return <Task key={task.id} content={task.content} isChecked={task.isChecked}/>
+            return (
+              <Task
+                key={task.id}
+                id={task.id}
+                content={task.content}
+                isChecked={task.isChecked}
+                onDeleteTask={onDeleteTask}
+              />
+            )
           })}
         </li>
       </main>

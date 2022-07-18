@@ -25,8 +25,29 @@ button {
     border: 0px;
 }
 
+.taskCompleted {
+    color: var(--gray-300) !important;
+    text-decoration: line-through;
+}
+
 .taskCheckbox {
     color: var(--blue-500);
+    cursor: pointer;
+    transition: color ease-in .2s;
+}
+
+.taskCheckbox:hover {
+    color: var(--blue-700);
+}
+
+.taskCheckboxCompleted {
+    color: var(--purple-500);
+    cursor: pointer;
+    transition: color ease-in .2s;
+}
+
+.taskCheckboxCompleted:hover {
+    color: var(--purple-600);
     cursor: pointer;
 }
 

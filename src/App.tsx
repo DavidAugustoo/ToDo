@@ -36,13 +36,31 @@ function App() {
     setNewTaskText('');
   }
 
+  function changeStatusTask(id: string) {
+    const newTasks = tasks.map(task => {
+      if(task.id == id) {
+        task.isChecked = !task.isChecked
+      }
+      return task
+    })
+
+    console.log(newTasks)
+
+    setTasks(newTasks);
+  }
+
   function onDeleteTask(id: string) {
     const newListTaskWithOutOne = tasks.filter(task => {
       return task.id != id
     })
 
-    setTasks(newListTaskWithOutOne)
+    
+    setTasks(newListTaskWithOutOne);
   }
+
+  const tasksCreated = tasks.length
+
+  const tasksCompleted = tasks.filter(task => task.isChecked).length
 
   return (
     <>
@@ -63,8 +81,8 @@ function App() {
         </form>
 
         <div className={style.taskArea}>
-          <p className={style.taskCreated}>Tarefas Criadas <span>3</span></p>
-          <p className={style.taskCompleted}>Concluídas <span>2 de 5</span></p>
+          <p className={style.taskCreated}>Tarefas Criadas <span>{tasksCreated}</span></p>
+          <p className={style.taskCompleted}>Concluídas <span>{tasksCompleted} de {tasksCreated}</span></p>
         </div>
 
         <li className={style.taskList}>
@@ -76,12 +94,12 @@ function App() {
                 content={task.content}
                 isChecked={task.isChecked}
                 onDeleteTask={onDeleteTask}
+                changeStatusTask={changeStatusTask}
               />
             )
           })}
         </li>
       </main>
-
     </>
   )
 }

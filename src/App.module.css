@@ -21,7 +21,8 @@
 }
 
 .taskForm button {
-    width: 5.625rem;
+    max-width: 5.625rem;
+    padding: 0 1rem;
     height: 3.375rem;
     font-size: 0.875rem;
     font-weight: 700;
@@ -42,4 +43,46 @@
 
 .taskForm button:hover {
     background-color: var(--blue-500);
+}
+
+.taskArea {
+    max-width: 46rem;
+    margin: 3.375rem auto;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.taskCreated {
+    color: var(--blue-500);
+    font-weight: 700;
+}
+
+.taskCompleted {
+    color: var(--purple-500);
+    font-weight: 700;
+}
+
+.taskCreated span,
+.taskCompleted span {
+    font-size: 0.85rem;
+
+    margin-left: 8px;
+
+    border-radius: 999px;
+    border: 1px;
+
+    background-color: var(--gray-400);
+    background-size: 16px;
+    padding: 2px 8px;
+    color: var(--gray-200);
+}
+
+.taskList {
+    max-width: 46rem;
+    margin: 3.375rem auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }

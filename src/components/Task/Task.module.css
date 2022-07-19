@@ -55,16 +55,13 @@ button {
     color: var(--gray-300);
     cursor: pointer;
     padding: 0.375rem;
-}
-
-.taskDelete:hover{
-    padding: 0.375rem;
-
     border-radius: 4px;
-    background-color: var(--gray-400);
-    color: var(--salmon-500);
-    
 
     display: flex;
     align-items: center;
+}
+
+.taskDelete:hover{
+    background-color: var(--gray-400);
+    color: var(--salmon-500);
 }

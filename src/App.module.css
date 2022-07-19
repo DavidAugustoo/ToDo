@@ -106,3 +106,16 @@
     align-items: center;
     gap: 1rem;
 }
+
+
+@media (max-width: 768px) {
+    main {
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 425px) {
+    html {
+        font-size: 12px;
+    }
+}

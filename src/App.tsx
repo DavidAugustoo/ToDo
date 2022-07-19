@@ -1,5 +1,5 @@
 import { Header } from './components/Header/Header';
-import { PlusCircle } from 'phosphor-react';
+import { PlusCircle, Clipboard, Notepad } from 'phosphor-react';
 import { v4 as uuid } from 'uuid';
 
 import style from './App.module.css';
@@ -38,7 +38,7 @@ function App() {
 
   function changeStatusTask(id: string) {
     const newTasks = tasks.map(task => {
-      if(task.id == id) {
+      if (task.id == id) {
         task.isChecked = !task.isChecked
       }
       return task
@@ -54,7 +54,7 @@ function App() {
       return task.id != id
     })
 
-    
+
     setTasks(newListTaskWithOutOne);
   }
 
@@ -87,20 +87,28 @@ function App() {
           <p className={style.taskCompleted}>Concluídas <span>{tasksCompleted} de {tasksCreated}</span></p>
         </div>
 
-        <li className={style.taskList}>
-          {tasks.map(task => {
-            return (
-              <Task
-                key={task.id}
-                id={task.id}
-                content={task.content}
-                isChecked={task.isChecked}
-                onDeleteTask={onDeleteTask}
-                changeStatusTask={changeStatusTask}
-              />
-            )
-          })}
-        </li>
+        {tasksCreated != 0 ?
+
+          <li className={style.taskList}>
+            {tasks.map(task => {
+              return (
+                <Task
+                  key={task.id}
+                  id={task.id}
+                  content={task.content}
+                  isChecked={task.isChecked}
+                  onDeleteTask={onDeleteTask}
+                  changeStatusTask={changeStatusTask}
+                />
+              )
+            })}
+          </li>
+          :
+          <div className={style.taskListEmpty}>
+            <Notepad size={56} color="#3D3D3D"/>
+            <p><strong>Você ainda não tem tarefas cadastradas</strong> <br /> Crie tarefas e organize seus itens a fazer</p>
+          </div>
+        }
       </main>
     </>
   )

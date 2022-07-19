@@ -21,7 +21,7 @@ export function Task({ id, content, isChecked, onDeleteTask, changeStatusTask }:
     }
 
     return (
-        <ul className={style.taskItem}>
+        <li className={style.taskItem}>
             {isChecked ?
                 <button className={style.taskCheckboxCompleted} onClick={onChangeStatusTask}>
                     <CheckCircle size={20} weight="fill" />
@@ -41,6 +41,6 @@ export function Task({ id, content, isChecked, onDeleteTask, changeStatusTask }:
             <button className={style.taskDelete} onClick={handleDeleteTask}>
                 <Trash size={17} />
             </button>
-        </ul>
+        </li>
     )
 }

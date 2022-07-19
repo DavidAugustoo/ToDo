@@ -89,7 +89,7 @@ function App() {
 
         {tasksCreated != 0 ?
 
-          <li className={style.taskList}>
+          <ul className={style.taskList}>
             {tasks.map(task => {
               return (
                 <Task
@@ -102,7 +102,7 @@ function App() {
                 />
               )
             })}
-          </li>
+          </ul>
           :
           <div className={style.taskListEmpty}>
             <Notepad size={56} color="#3D3D3D"/>
